@@ -1,0 +1,51 @@
+﻿@model OrnekUyg.Model.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+    <center>
+        <div class="row">
+            <div class="col-md-4"> </div>
+            <div class="col-md-4 bg-primary mt-5" style="border-radius:15px">
+                <h2>Login </h2>
+                <form action="/Login/Index" method="post">
+
+                    <table width="300" height="200">
+                        <tr>
+                            <td>Kullanıcı Adı</td>
+                            <td>@Html.TextBoxFor(x => x.UserName, new { @class = "form-control", placeholder = "admin" })</td>
+                        </tr>
+                        <tr>
+
+                            <td>Şifre</td>
+                            <td>@Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password", placeholder = "123" })</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.CheckBox("remember")  Remember Me?</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Giriş Yap" class="btn btn-light"/></td>
+                        </tr>
+                    </table>
+                    <span>@ViewBag.Ex</span>
+                </form>
+            </div>
+            <div class="col-md-4"> </div>
+        </div>
+    </center>
+
+
+</body>
+</html>

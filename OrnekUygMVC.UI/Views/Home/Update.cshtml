@@ -1,0 +1,51 @@
+﻿@model OrnekUyg.Model.Product
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <h4>Ürün Güncelleme</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form action="/Home/Update" method="post">
+                @Html.HiddenFor(x => x.ProductID)
+                <table>
+                    <tr>
+                        <td>
+
+                            Ürün Adı
+                        </td>
+                        <td>
+
+                            @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Ürün Kategorisi
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(x => x.CategoryID, ViewBag.Categories as SelectList, new { @class = "form-control" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Ürün Açıklaması
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Güncelle" class="btn-success" /></td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+    </div>
