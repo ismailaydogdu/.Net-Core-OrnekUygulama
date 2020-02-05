@@ -1,4 +1,4 @@
-﻿@model List<OrnekUyg.Model.Product>
+﻿@model Product
 @{
    Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,41 +11,47 @@
 
                 <h3>Ürün Ekleme</h3>
                 <form asp-controller="Home" asp-action="Index" method="post" class="form-group">
-                    <table>
-                        <tr>
-                            <td>Ürün Adı</td>
-                            <td><input type="text" name="ProductName" value="" class="form-control" /></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Ürün Açıklama</td>
-                            <td><input type="text" height="100" name="Description" value="" class="form-control" /></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Kategori</td>
-                            <td>
-                                <select name="CategoryID" class="form-control">
+            <table>
+                <tr>
+                    <td><label asp-for="ProductName">Ürün Adı</label></td>
+                    <td><input asp-for="ProductName" class="form-control" />
+
+                    </td>
+                    <td><span asp-validation-for="ProductName" class="text-danger"></span></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Description">Ürün Adı</label></td>
+                    <td><input asp-for="Description" value="" class="form-control" />
+                        </td>
+                    <td><span asp-validation-for="Description" class="text-danger"></span></td>
+                </tr>
+                <tr>
+                    <td>Kategori</td>
+                    <td>
+                        <select name="CategoryID" class="form-control">
 
 
 
-                                    @foreach (OrnekUyg.Model.Category item in ViewBag.Categories)
-                                    {
-                                        <option value="@item.CategoryID">@item.CategoryName</option>
+                            @foreach (Category item in ViewBag.Categories)
+                            {
+                                <option value="@item.CategoryID">@item.CategoryName</option>
 
-                                    }
-                                </select>
-                            </td>
-                            <td><input type="button" onclick="CategoryAdd()" value="Kategori Ekle" /></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="Kaydet" class="btn btn-primary" /></td>
-                            <td></td>
-                        </tr>
+                            }
+                        </select>
+                    </td>
+                    <td><input type="button" onclick="CategoryAdd()" value="Kategori Ekle" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Kaydet" class="btn btn-primary" /></td>
+                    <td></td>
+                </tr>
 
-                    </table>
-                </form>
+            </table>
+        </form>
+
+            
+
             </div>
             <div class="col-md-4">
 
@@ -71,7 +77,7 @@
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-group">
-                    @foreach (OrnekUyg.Model.Category item in ViewBag.Categories)
+                    @foreach (Category item in ViewBag.Categories)
                     {
                         <li class="list-group-item">
                             <a href="@Url.Action("Index","Home",new { catID = item.CategoryID })"> @item.CategoryName</a>
@@ -87,7 +93,7 @@
                         <th>Açıklama</th>
                         <th></th>
                     </tr>
-                    @foreach (OrnekUyg.Model.Product item in Model)
+                    @foreach (Product item in ViewBag.Products)
                     {
                         <tr>
                             <td>

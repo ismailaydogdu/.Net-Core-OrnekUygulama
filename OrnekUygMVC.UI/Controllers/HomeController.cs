@@ -22,10 +22,9 @@ namespace OrnekUygMVC.UI.Controllers
         }
         public IActionResult Index(int catID = 0)
         {
+
             if (HttpContext.Session.GetString("LoginSession") != null)
             {
-
-
                 ICollection<Product> products;
                 if (catID == 0)
                 {
@@ -35,20 +34,26 @@ namespace OrnekUygMVC.UI.Controllers
                 {
                     products = _productService.GetByCategoryID(catID);
                 }
+                ViewBag.Products = products;
                 ViewBag.Categories = _categoryService.GetAll();
-                return View(products);
+                return View();
             }
             return RedirectToAction("Index", "Login");
+
         }
 
         [HttpPost]
         public IActionResult Index(Product product)
         {
-
-            _productService.Insert(product);
-            ICollection<Product> products = _productService.GetByCategoryID(product.CategoryID);
-            ViewBag.Categories = _categoryService.GetAll();
-            return View(products);
+            if (ModelState.IsValid)
+            {
+                _productService.Insert(product);
+                ICollection<Product> products = _productService.GetByCategoryID(product.CategoryID);
+                ViewBag.Categories = _categoryService.GetAll();
+                ViewBag.Products = products;
+                return View();
+            }
+            return RedirectToAction("Index", "Home", new { catID = 0 });
         }
         public IActionResult CategoryAdd(Category category)
         {

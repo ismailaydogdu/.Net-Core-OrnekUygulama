@@ -21,7 +21,7 @@ namespace OrnekUyg.Core.DataAccess.EntityFramework.Concrete
         public void Add(TEntity entity)
         {
             _db.Entry(entity).State = EntityState.Added;
-            _db.SaveChanges();
+                _db.SaveChanges();
         }
         public void Delete(TEntity entity)
         {
