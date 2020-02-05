@@ -12,7 +12,6 @@ namespace OrnekUyg.Model
             Products = new HashSet<Product>();
         }
         public int CategoryID { get; set; }
-        [Required(ErrorMessage = "Kategori Adı boş geçilemez")]
         public string CategoryName { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }

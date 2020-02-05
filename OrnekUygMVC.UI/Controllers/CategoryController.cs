@@ -15,7 +15,7 @@ namespace OrnekUygMVC.UI.Controllers
         public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
-           
+
         }
         public IActionResult Index()
         {
@@ -29,7 +29,13 @@ namespace OrnekUygMVC.UI.Controllers
         [HttpPost]
         public IActionResult Index(Category category)
         {
-            _categoryService.Insert(category);
+            try
+            {
+                _categoryService.Insert(category);
+            }
+            catch (Exception)
+            {
+            }
             return RedirectToAction("Index");
         }
         public IActionResult Update(int categoryID)
@@ -39,7 +45,13 @@ namespace OrnekUygMVC.UI.Controllers
         [HttpPost]
         public IActionResult Update(Category category)
         {
-            _categoryService.Update(category);
+            try
+            {
+                _categoryService.Update(category);
+            }
+            catch (Exception)
+            {
+            }
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int categoryID)

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace OrnekUyg.BLL.Concrate
 {
-    public class CategoryService: ICategoryService
+    public class CategoryService : ICategoryService
     {
         ICategoryRepository _categoryRepository;
         public CategoryService(ICategoryRepository categoryRepository)
@@ -37,12 +37,22 @@ namespace OrnekUyg.BLL.Concrate
 
         public void Insert(Category entity)
         {
+            Check(entity);
             _categoryRepository.Add(entity);
         }
 
         public void Update(Category entity)
         {
+            Check(entity);
+            entity.UpdateDate = DateTime.Now;
             _categoryRepository.Update(entity);
+        }
+        public void Check(Category category)
+        {
+            if (string.IsNullOrEmpty(category.CategoryName))
+            {
+                throw new Exception("Kullanıcı adı boş geçilemez");
+            }
         }
     }
 }

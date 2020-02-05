@@ -57,8 +57,17 @@ namespace OrnekUygMVC.UI.Controllers
         }
         public IActionResult CategoryAdd(Category category)
         {
-            _categoryService.Insert(category);
-            return RedirectToAction("Index");
+            try
+            {
+                _categoryService.Insert(category);
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+            }
+                return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int productID)

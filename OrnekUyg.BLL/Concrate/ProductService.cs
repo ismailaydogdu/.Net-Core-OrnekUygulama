@@ -54,6 +54,7 @@ namespace OrnekUyg.BLL.Concrate
 
         public void Update(Product entity)
         {
+            entity.UpdateDate = DateTime.Now;
             _productRepository.Update(entity);
         }
     }
