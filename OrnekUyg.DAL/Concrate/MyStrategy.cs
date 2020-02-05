@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OrnekUyg.DAL.Concrate
 {
-    class MyStrategy : DropCreateDatabaseAlways<OrnekUygDbContext>
+    class MyStrategy : DropCreateDatabaseIfModelChanges<OrnekUygDbContext>
     {
         protected override void Seed(OrnekUygDbContext context)
         {

@@ -10,7 +10,7 @@ namespace OrnekUyg.DAL.Concrate
     public class OrnekUygDbContext : DbContext
     {
 
-        public OrnekUygDbContext():base("Server=.; Database=OrnekUygDb; uid=sa; pwd=123")
+        public OrnekUygDbContext():base("Server=.; Database=OrnekUygDb; Trusted_Connection=True"/*uid=sa; pwd=123*/)
         {
             
             Database.SetInitializer<OrnekUygDbContext>(new MyStrategy());
